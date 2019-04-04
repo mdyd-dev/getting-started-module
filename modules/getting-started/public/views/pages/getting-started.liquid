@@ -1,0 +1,42 @@
+---
+layout_name: modules/getting-started/application
+slug: getting-started
+response_headers: >
+  {
+    "Access-Control-Allow-Origin": "*"
+  }
+---
+<style>
+code { font-size: 14px }
+pre { font-size: 14px }
+</style>
+
+{% assign env = "https://partners.platform-os.com" %}
+<p>
+Welcome to pOS!
+</p>
+
+<p>
+Now, when you have your first Instance, let's install some modules :)
+</p>
+
+<form method="post" action="{{ env }}/demo/install_module">
+<input type="hidden" name="domain" value="{{ context.location.host }}" />
+<input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/installing-module?wait_for=/blog" />
+<input type="hidden" name="pos_module_id" value="19" />
+<input type="submit" value="Install Blog module" />
+</form>
+<br><br>
+<p>Or, if you prefer, you can start developing your Instance by following the steps below:</p>
+    <div>
+        <ol>
+            <li>
+                Download <a target="_blank"
+                            href="https://www.npmjs.com/package/@platform-os/marketplace-kit">marketplace-kit</a>.
+                Then, run following commands in your terminal:
+            </li>
+            <li><code>marketplace-kit env add demo --url https://{{ context.location.host }} --token {{ params.token }} --email demo@demo.platform-os.com</code></li>
+            <li><code>marketplace-kit deploy demo --token {{ params.token }}</span></code></li>
+        </ol>
+    </div>
+
