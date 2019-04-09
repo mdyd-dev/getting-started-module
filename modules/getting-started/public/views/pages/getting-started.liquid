@@ -25,10 +25,21 @@ Now, when you have your first Instance, let's install some modules :)
 
 <form method="post" action="{{ env }}/demo/install_module">
 <input type="hidden" name="domain" value="{{ context.location.host }}" />
-<input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/installing-module?wait_for=/blog/post/blog/getting-started" />
+<input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/please-wait?wait_for=/blog/post/blog/getting-started" />
 <input type="hidden" name="pos_module_id" value="19" />
 <input type="submit" value="Install Blog module" />
 </form>
+<br><br>
+
+<p>Or deploy a code from some <b>public</b> git repository:</p>
+
+<form method="post" action="{{ env }}/demo/deploy_instance">
+<input type="hidden" name="domain" value="{{ context.location.host }}" />
+<input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/please-wait?wait_for=/" />
+<input type="text" name="git_url" placeholder="Git URL to a public repository" />
+<input type="submit" value="Deploy!" />
+</form>
+
 <br><br>
 <p>Or, if you prefer, you can start developing your Instance by following the steps below:</p>
     <div>
