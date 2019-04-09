@@ -22,22 +22,24 @@ slug: please-wait
 <p>Please wait...</p>
 
 {% if params.wait_for != blank %}
-<script type="text/javascript">
-    var interval = null;
+    <script type="text/javascript">
+        var interval = null;
 
-    var checkIfReady = function () {
-        var url = "{{ params.wait_for }}";
-        fetch(url).then((response) => {
-            if (response.status === 200) {
-                document.location = url;
-                if (interval) {
-                    clearInterval(interval);
+        var checkIfReady = function () {
+            var url = "{{ params.wait_for }}";
+            fetch(url).then(function (response) {
+                if (response.status === 200) {
+                    document.location = url;
+                    if (interval) {
+                        clearInterval(interval);
+                    }
                 }
-            }
-        }).catch((error) => { console.log('Not ready yet...')});
-    };
+            }).catch(function (error) {
+                console.log('Not ready yet...')
+            });
+        };
 
-    checkIfReady();
-    interval = setInterval(checkIfReady, 5000);
-</script>
+        checkIfReady();
+        interval = setInterval(checkIfReady, 5000);
+    </script>
 {% endif %}
