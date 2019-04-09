@@ -23,16 +23,22 @@ slug: please-wait
 
 {% if params.wait_for != blank %}
     <script type="text/javascript">
+        var defaultPosBody = "<h1>Welcome to Platform OS!</h1>";
         var interval = null;
 
         var checkIfReady = function () {
             var url = "{{ params.wait_for }}";
             fetch(url).then(function (response) {
                 if (response.status === 200) {
-                    document.location = url;
-                    if (interval) {
-                        clearInterval(interval);
-                    }
+                    response.text().then(function (body) {
+                        var bodyIsDefaultPosBody = body.slice(0, 32) === defaultPosBody;
+                        if (!bodyIsDefaultPosBody) {
+                            document.location = url;
+                            if (interval) {
+                                clearInterval(interval);
+                            }
+                        }
+                    });
                 }
             }).catch(function (error) {
                 console.log('Not ready yet...')
