@@ -12,6 +12,9 @@ pre { font-size: 14px }
 </style>
 
 {% assign env = "https://partners.platform-os.com" %}
+{% if params.env != blank %}
+  {% assign env = params.env %}
+{% endif %}
 <p>
 Welcome to pOS!
 </p>
