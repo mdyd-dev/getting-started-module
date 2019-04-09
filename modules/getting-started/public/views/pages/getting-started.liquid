@@ -25,7 +25,7 @@ On Demo Instance you can install some modules
 
 <form method="post" action="{{ env }}/demo/install_module">
 <input type="hidden" name="domain" value="{{ context.location.host }}" />
-<input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/please-wait?wait_for=/blog/post/blog/getting-started" />
+<input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/please-wait?wait_for=/" />
 <input type="hidden" name="pos_module_id" value="19" />
 <input class="wow-button" type="submit" value="Install Blog module" />
 </form>
