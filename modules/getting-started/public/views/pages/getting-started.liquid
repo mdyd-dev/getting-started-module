@@ -7,50 +7,69 @@ response_headers: >
   }
 ---
 <style>
-code { font-size: 14px }
-pre { font-size: 14px }
+    code {
+        font-size: 14px
+    }
+
+    pre {
+        font-size: 14px
+    }
 </style>
 
 {% assign env = "https://partners.platform-os.com" %}
 {% if params.env != blank %}
-  {% assign env = params.env %}
+    {% assign env = params.env %}
 {% endif %}
-<p>
-Welcome to Your Demo Instance
-</p>
+<h2>
+    Welcome to your <b>platformOS Demo Instance</b>!
+</h2>
 
 <p>
-On Demo Instance you can install some modules
+    Use your Demo Instance to play around, extend it with our blog module, deploy another codebase from a public GitHub
+    repository, or use it as a sandbox and explore.
+</p>
+
+<h3>Install the Blog Module</h3>
+<p>
+    With this 1-Click Installation, you can deploy our Blog Module to your Demo Instance, along with a basic layout, a
+    sample post, and Getting Started instructions.
 </p>
 
 <form method="post" action="{{ env }}/demo/install_module">
-<input type="hidden" name="domain" value="{{ context.location.host }}" />
-<input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/please-wait?wait_for=/" />
-<input type="hidden" name="pos_module_id" value="19" />
-<input class="wow-button" type="submit" value="Install Blog module" />
+    <input type="hidden" name="domain" value="{{ context.location.host }}"/>
+    <input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/please-wait?wait_for=/"/>
+    <input type="hidden" name="pos_module_id" value="19"/>
+    <input class="wow-button" type="submit" value="Install Blog module"/>
 </form>
-<br><br>
 
-<p>You can also deploy an Instance from <b>public</b> git repository</p>
-
+<h3>Deploy a GitHub repository</h3>
+<p>
+    You can deploy a platformOS codebase from any public GitHub repository, for example <code>https://github.com/mdyd-dev/marketplace-nearme-example</code>.
+</p>
 <form method="post" action="{{ env }}/demo/deploy_instance">
-<input type="hidden" name="domain" value="{{ context.location.host }}" />
-<input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/please-wait?wait_for=/" />
-<input type="text" name="git_url" placeholder="Git URL to a public repository" />
-<input class="wow-button" type="submit" value="Deploy!" />
+    <input type="hidden" name="domain" value="{{ context.location.host }}"/>
+    <input type="hidden" name="redirect_to" value="https://{{ context.location.host }}/please-wait?wait_for=/"/>
+    <input type="text" name="git_url" placeholder="Git URL to a public repository"/>
+    <input class="wow-button" type="submit" value="Deploy!"/>
 </form>
 
-<br><br>
-<p>Or, if you can start developing your Instance by following the steps below:</p>
-    <div>
-        <ol>
-            <li>
-                Download <a target="_blank"
-                            href="https://www.npmjs.com/package/@platform-os/marketplace-kit">marketplace-kit</a>.
-                Then, run following commands in your terminal:
-            </li>
-            <li><code>marketplace-kit env add demo --url https://{{ context.location.host }} --token {{ params.token }} --email demo@demo.platform-os.com</code></li>
-            <li><code>marketplace-kit deploy demo --token {{ params.token }}</span></code></li>
-        </ol>
-    </div>
+<h3>Use it as a sandbox</h3>
+<p>You can use this demo Instance to play around in the codebase and deploy it to explore your changes on a live site.
+    Follow these steps to use this demo Instance as a sandbox:</p>
 
+<ol>
+    <li>
+        <a target="_blank"
+           href="https://www.npmjs.com/package/@platform-os/marketplace-kit">Install the Marketplace Kit</a>, that
+        allows you to easily deploy your configuration files and assets to our platform.
+    </li>
+    <li>
+        <a target="_blank"
+           href="https://documentation.platform-os.com/get-started/deploying-syncing-changes#step-2-authenticate-environments">Authenticate
+            this demo Instance</a> by copying this pre-configured command into your command line:
+        <pre>marketplace-kit env add demo --url https://{{ context.location.host }} --token {{ params.token }}
+                --email demo@demo.platform-os.com</pre>
+    </li>
+
+    <li><code>marketplace-kit deploy demo --token {{ params.token }}</span></code></li>
+</ol>
